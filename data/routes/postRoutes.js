@@ -4,6 +4,20 @@ const db = require(`../db`);
 
 // let postId = null;
 
+// Get Posts
+router.get('/', (req, res) => {
+	db.find()
+		.then(posts => {
+			res.status(200).json(posts);
+		})
+		.catch(err => {
+			res
+				.status(500)
+				.json({ error: 'The posts information could not be retrieved.' });
+		});
+});
+
+// adding Posts
 router.post('/', (req, res) => {
 	const postData = req.body;
 	// post.id = postId++  --- not need because data table will auto format an id, but if this was hard coded array we would need to increment the id some how
