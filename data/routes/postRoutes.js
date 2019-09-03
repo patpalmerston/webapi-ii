@@ -41,8 +41,6 @@ router.get('/:id', (req, res) => {
 		});
 });
 
-// get comments by post id 
-
 // adding Posts
 router.post('/', (req, res) => {
 	const postData = req.body;
@@ -63,9 +61,22 @@ router.post('/', (req, res) => {
 		});
 });
 
-// post comments to individual posts
-
 // delete post
+router.delete('/:id', (req, res) => {
+	const postId = req.params.id;
+	if (postId === 0) {
+		res
+			.status(404)
+			.json({ message: 'The post with the specified ID does not exist.' });
+	}
+	db.remove(postId)
+		.then(post => {
+			res.status(200).json({ message: 'User Deleted' });
+		})
+		.catch(err => {
+			res.status(500).json({ error: 'The post could not be removed' });
+		});
+});
 
 // edit post
 
