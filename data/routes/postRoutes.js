@@ -78,18 +78,16 @@ router.delete('/:id', (req, res) => {
 		});
 });
 
-// update post 
+// update post
 
 router.put('/:id', (req, res) => {
 	const { id } = req.params;
 	const { title, contents } = req.body;
 
 	if (!title || !contents) {
-		res
-			.status(400)
-			.json({
-				errorMessage: 'Please provide title and contents for the post.'
-			});
+		res.status(400).json({
+			errorMessage: 'Please provide title and contents for the post.'
+		});
 	}
 
 	db.update(id, { title, contents })
