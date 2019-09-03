@@ -3,10 +3,6 @@ const router = express.Router();
 
 const db = require(`../db`);
 
-
-
-
-
 // get all comments by post id
 router.get('/:id/comments', (req, res) => {
 	const id = req.params.id;
@@ -29,6 +25,7 @@ router.get('/:id/comments', (req, res) => {
 		});
 });
 
-// get comment by id
+// insert comment
+router.post('/:id/comments', (req, res) => {});
 
 module.exports = router;
